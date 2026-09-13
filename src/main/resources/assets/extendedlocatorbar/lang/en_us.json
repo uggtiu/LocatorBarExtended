@@ -1,0 +1,73 @@
+{
+  "elb.title": "Extended Locator Bar",
+  "elb.category.general": "General Settings",
+  "elb.category.general.tooltip": "Global Locator Bar parameters",
+  "elb.category.players.global": "Players (Global)",
+  "elb.category.players.global.tooltip": "Player settings applied across all worlds and servers",
+  "elb.category.players.server": "Players (Server)",
+  "elb.category.players.server.tooltip": "Player settings for the current server: %s",
+
+  "elb.mode": "Display Mode",
+  "elb.mode.desc": "Player skin heads or default colored icons",
+  "elb.mode.default": "Default (Global)",
+  "elb.mode.head": "Head",
+  "elb.mode.icon": "Icon",
+
+  "elb.tristate.default": "Default (Global)",
+  "elb.tristate.enabled": "Enabled",
+  "elb.tristate.disabled": "Disabled",
+
+  "elb.clean_nicknames": "Clean Nicknames",
+  "elb.clean_nicknames.desc": "Use raw account username without server rank prefixes, clan tags or emojis",
+
+  "elb.head_size": "Head Size",
+  "elb.head_rounding": "Head Rounding (%)",
+  "elb.head_rounding.desc_player": "-1 inherits from Global (%s%%)",
+
+  "elb.show_nicknames": "Show Nicknames",
+  "elb.enhanced_nickname": "Enhanced Bubble Badge",
+  "elb.enhanced_nickname.desc": "Render nickname inside a styled badge with downward pointer arrow",
+  "elb.nickname_scale": "Nickname Scale",
+  "elb.nickname_scale.desc_player": "0.0 inherits from Global (%sx)",
+
+  "elb.highlight": "Highlight (Outline)",
+  "elb.highlight.global": "Global Highlight",
+  "elb.highlight.global.desc": "Enable colored outline for all players",
+  "elb.highlight_color": "Highlight Color",
+  "elb.highlight_color.default": "Default Highlight Color",
+
+  "elb.icon_color": "Icon Color (in Icon mode)",
+  "elb.nickname_color": "Nickname Color",
+  "elb.auto_remember": "Auto-remember Players",
+  "elb.auto_remember.desc": "Automatically store discovered players in config for fast customization",
+
+  "elb.player.group_title": "Player: %s",
+  "elb.player.group_desc": "Settings for %s %s",
+  "elb.player.reset_button": "§eReset to Global Settings",
+  "elb.player.reset_button.desc": "Resets all custom overrides for this player. They will continue to strictly mirror Global.",
+
+  "elb.empty_list.global": "§7Global player list is empty. Players will be added automatically upon encounter.",
+  "elb.empty_list.server": "§7Player list is empty for current server (§f%s§7).",
+
+  "elb.command.reload": "§a[ELB] Configuration reloaded successfully!",
+  "elb.command.global.mode": "§a[ELB] Global render mode set to: §f%s",
+  "elb.command.global.clean_nicknames": "§a[ELB] Clean nicknames set to: §f%s",
+  "elb.command.global.icon_color": "§a[ELB] Global icon color updated!",
+  "elb.command.global.head_size": "§a[ELB] Global head size set to: §f%s",
+  "elb.command.global.rounding": "§a[ELB] Global head rounding set to: §f%s%%",
+  "elb.command.global.nicknames": "§a[ELB] Nicknames display set to: §f%s",
+  "elb.command.global.enhanced": "§a[ELB] Enhanced bubble nicknames set to: §f%s",
+  "elb.command.global.scale": "§a[ELB] Global nickname scale set to: §f%s",
+  "elb.command.global.highlight": "§a[ELB] Global highlight set to: §f%s",
+
+  "elb.command.player.mode": "§a[ELB] (%s) Mode for §f%s §aset to: §f%s",
+  "elb.command.player.clean_nicknames": "§a[ELB] (%s) Clean nicknames for §f%s §aset to: §f%s",
+  "elb.command.player.icon_color": "§a[ELB] (%s) Icon color for §f%s §aupdated!",
+  "elb.command.player.highlight": "§a[ELB] (%s) Highlight for §f%s §aset to: §f%s",
+  "elb.command.player.rounding": "§a[ELB] (%s) Rounding for §f%s §aset to: §f%s%%",
+  "elb.command.player.nickname_color": "§a[ELB] (%s) Nickname color for §f%s §aupdated!",
+  "elb.command.player.nickname_scale": "§a[ELB] (%s) Nickname scale for §f%s §aset to: §f%s",
+  "elb.command.player.reset.global": "§a[ELB] Player §f%s §aoverrides reset to default (now following Global).",
+  "elb.command.player.reset.server": "§a[ELB] Server overrides for §f%s §aremoved (falling back to Global).",
+  "elb.command.player.reset.not_found": "§e[ELB] No overrides found for §f%s §ein %s scope."
+}

@@ -1,64 +1,83 @@
-# Extended Locator Bar
+# 🧭 Extended Locator Bar
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Minecraft](https://img.shields.io/badge/Minecraft-1.21.11-107C41?style=for-the-badge&logo=minecraft&logoColor=white)](https://www.minecraft.net/)
+[![Fabric](https://img.shields.io/badge/Fabric-Loader%200.16+-black?style=for-the-badge&logo=fabric&logoColor=white)](https://fabricmc.net/)
+[![Java](https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://adoptium.net/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 
-Клиентский мод для Minecraft, расширяющий стандартный **Locator Bar** (панель локатора), добавленный в игру в версии 1.21.6.
+<!--
+[![Modrinth](https://img.shields.io/badge/Modrinth-Available-00AF5C?style=flat-square&logo=modrinth&logoColor=white)](https://modrinth.com/mod/extended-locator-bar)
+[![CurseForge](https://img.shields.io/badge/CurseForge-Available-F16436?style=flat-square&logo=curseforge&logoColor=white)](https://curseforge.com/minecraft/mc-mods/extended-locator-bar)
+-->
+[![GitHub Release](https://img.shields.io/github/v/release/uggtiu/extended-locator-bar?style=flat-square&color=6f42c1&logo=github)](https://github.com/uggtiu/extended-locator-bar/releases)
 
-Вместо стандартных цветных кружков/квадратов мод отображает на панели локатора **головы игроков** и их **ники** прямо над иконками — чтобы сразу видеть, кто где находится, не наводя прицел и не запоминая цвета.
+Клиентский мод для Minecraft 1.21.11, преображающий стандартную панель Locator Bar: скины игроков, настраиваемые плашки ников, гибкие профили и кастомные цвета.
 
-![Extended Locator Bar Screenshot1](https://raw.githubusercontent.com/uggtiu/extended-locator-bar/main/screenshot1.png)
-![Extended Locator Bar Screenshot2](https://raw.githubusercontent.com/uggtiu/extended-locator-bar/main/screenshot2.png)
+---
 
-## Возможности
+## ✨ Основные возможности
 
-- 🎯 **Лица скинов:** Замена абстрактных иконок игроков на головы их скинов (с поддержкой второго объемного слоя/шляпы).
-- 🏷️ **Отображение ников:** Никнейм игрока аккуратно отцентрирован над иконкой на панели.
-- 🔄 **Ванильное поведение:** Полное сохранение оригинальной физики Locator Bar — дистанционное масштабирование, индикаторы высоты (стрелочки вверх/вниз), работа 120°-сектора и скрытие панели при получении опыта.
-- 🛡️ **Совместимость с маркерами:** Кастомные путевые точки (метки датапаков/плагинов без привязки к игрокам) продолжают отображаться в ванильном стиле.
+* 👤 **Головы игроков со скином:** Замена стандартных цветных ромбиков на лица игроков с поддержкой объемного второго слоя (hat layer).
+* 💬 **Улучшенный вид ника (Bubble Badge):** Стильная полупрозрачная плашка с направляющей стрелочкой вниз прямо к голове игрока.
+* 🧹 **Режим «Чистые ники» (Clean Nicknames):** Убирает кастомные серверные префиксы, эмодзи, ранги и клан-теги (например, `🐉`), отображая чистое имя аккаунта игрока.
+* ⭕ **Пиксельное закругление:** Настраиваемый срез углов головы (0% — квадрат, 50% — срез, 100% — круглый аватар).
+* 🎯 **Индивидуальный хайлайт:** Цветная рамка вокруг головы и кастомный цвет плашки ника (по умолчанию `#FF0000`).
+* 🎨 **Кастомный цвет иконок:** Возможность переключить конкретного игрока обратно в режим ванильного ромбика и перекрасить его в любой цвет.
+* 🌐 **Каскадные скоупы (Server vs Global):** Настройки можно задавать глобально или изолированно для конкретного сервера/мира.
+* 🤖 **Автозапоминание игроков:** Встреченные игроки автоматически регистрируются в конфиге со статусом следования глобальным настройкам.
+* ⚙️ **Внутриигровой GUI:** Полная интеграция с **YetAnotherConfigLib (YACL v3)** и **Mod Menu**.
+* 🌍 **Двуязычная локализация:** Полный перевод интерфейса и команд чата на **Русский** и **English**.
 
-## Планы на будущее
+---
 
-> Функционал ниже не реализован в текущей версии и добавлен как ориентир:
+## 📸 Скриншоты
 
-- [ ] Конфиг для настройки размера голов и шрифта никнеймов
-- [ ] Опциональная фильтрация/сортировка игроков на панели
-- [ ] Интеграция с цветами команд (Scoreboard / Team prefixes)
+![In-game Screenshot1](https://raw.githubusercontent.com/uggtiu/extended-locator-bar/main/screenshot1.jpg)
+![In-game Screenshot2](https://raw.githubusercontent.com/uggtiu/extended-locator-bar/main/screenshot2.png)
 
-## Установка
+---
 
-1. Убедитесь, что у вас установлен [Fabric Loader](https://fabricmc.net/) и [Fabric API](https://modrinth.com/mod/fabric-api) для соответствующей версии Minecraft.
-2. Скачайте `.jar` файл мода и поместите его в папку `mods` вашего клиента.
-3. Запустите игру.
+## ⌨️ Команды в чате (`/elb`)
 
-## Требования
+| Команда | Описание |
+| :--- | :--- |
+| `/elb gui` | Открыть визуальное меню настроек |
+| `/elb reload` | Перезагрузить конфиг с диска |
+| `/elb global mode <head\|icon>` | Глобальный режим отображения |
+| `/elb global clean_nicknames <true\|false>` | Включить/выключить чистые ники без серверных эмодзи |
+| `/elb global head_size <4-24>` | Базовый размер головы |
+| `/elb global rounding <0-100>` | Процент закругления голов |
+| `/elb global highlight <true\|false> [цвет]` | Глобальная цветная обводка |
+| `/elb global enhanced <true\|false>` | Переключение плашки Bubble / классического текста |
+| `/elb player <ник> mode <head\|icon> [server\|global]` | Режим конкретного игрока |
+| `/elb player <ник> icon_color <цвет> [server\|global]` | Цвет ванильного ромбика игрока |
+| `/elb player <ник> highlight <true\|false> [цвет] [server\|global]` | Хайлайт конкретного игрока |
+| `/elb player <ник> nickname_color <цвет> [server\|global]` | Цвет текста ника игрока |
+| `/elb player <ник> reset [server\|global]` | Сбросить оверрайды игрока к настройкам Global |
 
-| Компонент | Требуемая версия |
-| --- | --- |
-| Minecraft | 1.21.11 |
-| Fabric Loader | 0.16.0+ |
-| Fabric API | Требуется |
+> **Формат цветов:** поддерживаются HEX (`#FF0000`, `0x00FFCC`) и ключевые слова (`red`, `green`, `blue`, `gold`, `purple` и др.).
 
-## Совместимость
+---
 
-Мод работает **исключительно на стороне клиента** и не требует установки на сервер.
+## 🛠️ Установка
 
-- На серверах, где Locator Bar отключён администратором (`/gamerule locator_bar false`), мод не отображает ничего — строго по правилам ванильного клиента.
-- Мод не даёт нечестного преимущества: игроки, скрытые от локатора легитимными игровыми механиками (приседание / sneak, надетая тыква/голова моба, эффект невидимости или режим spectator), **не отображаются**.
+1. Установите **[Fabric Loader](https://fabricmc.net/)** (версии `0.16.0+`).
+2. Поместите в папку `.minecraft/mods`:
+   * Сам мод **Extended Locator Bar**
+   * **[Fabric API](https://modrinth.com/mod/fabric-api)**
+   * **[YetAnotherConfigLib (YACL)](https://modrinth.com/mod/yacl)**
+   * *(Опционально)* **[Mod Menu](https://modrinth.com/mod/modmenu)** для доступа к настройкам через список модов.
 
-## Как это работает
+---
 
-Мод перехватывает этап отрисовки элементов панели локатора (`LocatorBar`) и использует данные, которые ванильный сервер уже передал клиенту:
+## 🔒 Честная игра и ванильное поведение
 
-1. По UUID путевой точки мод находит закешированный в сетевом клиенте профиль игрока (`PlayerListEntry`).
-2. Отрисовывает текстуру лица через стандартный `PlayerSkinDrawer`.
-3. Рендерит имя игрока над иконкой.
+* Мод работает **строго на клиенте** и не требует установки на сервер.
+* Если администратор выключил локатор (`/gamerule locator_bar false`), мод не отображает ничего.
+* Игроки, скрытые ванильными механиками (приседание/sneak, невидимость, тыква на голове, режим зрителя), **не отображаются**. Никакого WH или нечестного преимущества.
 
-Никаких сторонних сетевых пакетов не отправляется и не запрашивается.
+---
 
-## Лицензия
+## 📄 Лицензия
 
-Проект распространяется под свободной лицензией **[MIT](LICENSE)**. Вы можете свободно использовать его в модпаках, модифицировать и изучать код.
-
-## Обратная связь
-
-Баг-репорты и предложения можно оставлять в разделе **Issues** репозитория.
+Проект распространяется под открытой лицензией **[MIT](LICENSE)**. Свободен для использования в любых сборках и модпаках.

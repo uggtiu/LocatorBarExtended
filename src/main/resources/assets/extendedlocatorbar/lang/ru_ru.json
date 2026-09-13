@@ -1,0 +1,73 @@
+{
+  "elb.title": "Extended Locator Bar",
+  "elb.category.general": "Общие настройки",
+  "elb.category.general.tooltip": "Глобальные параметры панели локатора",
+  "elb.category.players.global": "Игроки (Глобально)",
+  "elb.category.players.global.tooltip": "Настройки игроков, действующие во всех мирах и серверах",
+  "elb.category.players.server": "Игроки (Сервер)",
+  "elb.category.players.server.tooltip": "Настройки игроков для текущего сервера: %s",
+
+  "elb.mode": "Режим отображения",
+  "elb.mode.desc": "Головы игроков со скином или стандартные цветные иконки",
+  "elb.mode.default": "По умолчанию (Global)",
+  "elb.mode.head": "Голова",
+  "elb.mode.icon": "Иконка",
+
+  "elb.tristate.default": "По умолчанию (Global)",
+  "elb.tristate.enabled": "Включено",
+  "elb.tristate.disabled": "Выключено",
+
+  "elb.clean_nicknames": "Чистые ники",
+  "elb.clean_nicknames.desc": "Использовать чистое имя аккаунта без серверных рангов, клан-тегов и иконок",
+
+  "elb.head_size": "Размер головы",
+  "elb.head_rounding": "Закругление голов (%)",
+  "elb.head_rounding.desc_player": "-1 означает наследование из Global (%s%%)",
+
+  "elb.show_nicknames": "Отображать никнеймы",
+  "elb.enhanced_nickname": "Улучшенный вид (Bubble)",
+  "elb.enhanced_nickname.desc": "Отображать ник в стильной плашке со стрелочкой вниз",
+  "elb.nickname_scale": "Масштаб шрифта ника",
+  "elb.nickname_scale.desc_player": "0.0 означает наследование из Global (%sx)",
+
+  "elb.highlight": "Хайлайт (Обводка)",
+  "elb.highlight.global": "Глобальный хайлайт",
+  "elb.highlight.global.desc": "Включить цветную обводку для всех игроков",
+  "elb.highlight_color": "Цвет хайлайта",
+  "elb.highlight_color.default": "Цвет хайлайта по умолчанию",
+
+  "elb.icon_color": "Цвет иконки (в режиме Icon)",
+  "elb.nickname_color": "Цвет никнейма",
+  "elb.auto_remember": "Автозапоминание игроков",
+  "elb.auto_remember.desc": "Автоматически сохранять найденных игроков в конфиг для быстрой настройки",
+
+  "elb.player.group_title": "Игрок: %s",
+  "elb.player.group_desc": "Настройки для %s %s",
+  "elb.player.reset_button": "§eСбросить к настройкам Global",
+  "elb.player.reset_button.desc": "Сбрасывает все персональные настройки этого игрока. Он продолжит отображаться, повторяя Global.",
+
+  "elb.empty_list.global": "§7Глобальный список пуст. Игроки добавляются автоматически при встрече.",
+  "elb.empty_list.server": "§7Список пуст для текущего сервера (§f%s§7).",
+
+  "elb.command.reload": "§a[ELB] Конфигурация успешно перезагружена!",
+  "elb.command.global.mode": "§a[ELB] Глобальный режим отображения установлен на: §f%s",
+  "elb.command.global.clean_nicknames": "§a[ELB] Чистые ники (без префиксов/эмодзи) установлены на: §f%s",
+  "elb.command.global.icon_color": "§a[ELB] Глобальный цвет иконки обновлен!",
+  "elb.command.global.head_size": "§a[ELB] Глобальный размер головы установлен на: §f%s",
+  "elb.command.global.rounding": "§a[ELB] Глобальное закругление голов установлено на: §f%s%%",
+  "elb.command.global.nicknames": "§a[ELB] Отображение никнеймов установлено на: §f%s",
+  "elb.command.global.enhanced": "§a[ELB] Улучшенный вид (Bubble) установлен на: §f%s",
+  "elb.command.global.scale": "§a[ELB] Глобальный масштаб ников установлен на: §f%s",
+  "elb.command.global.highlight": "§a[ELB] Глобальный хайлайт установлен на: §f%s",
+
+  "elb.command.player.mode": "§a[ELB] (%s) Режим для §f%s §aустановлен на: §f%s",
+  "elb.command.player.clean_nicknames": "§a[ELB] (%s) Чистые ники для §f%s §aустановлены на: §f%s",
+  "elb.command.player.icon_color": "§a[ELB] (%s) Цвет иконки для §f%s §aобновлен!",
+  "elb.command.player.highlight": "§a[ELB] (%s) Хайлайт для §f%s §aустановлен на: §f%s",
+  "elb.command.player.rounding": "§a[ELB] (%s) Закругление для §f%s §aустановлено на: §f%s%%",
+  "elb.command.player.nickname_color": "§a[ELB] (%s) Цвет никнейма для §f%s §aобновлен!",
+  "elb.command.player.nickname_scale": "§a[ELB] (%s) Масштаб ника для §f%s §aустановлен на: §f%s",
+  "elb.command.player.reset.global": "§a[ELB] Настройки игрока §f%s §aсброшены (теперь следует Global).",
+  "elb.command.player.reset.server": "§a[ELB] Серверные оверрайды для §f%s §aудалены (возврат к Global).",
+  "elb.command.player.reset.not_found": "§e[ELB] Не найдено настроек для §f%s §eв скоупе %s."
+}

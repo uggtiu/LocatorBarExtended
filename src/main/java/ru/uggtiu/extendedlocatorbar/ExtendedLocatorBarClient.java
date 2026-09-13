@@ -5,6 +5,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.uggtiu.extendedlocatorbar.command.ElbCommand;
+import ru.uggtiu.extendedlocatorbar.config.ConfigManager;
 
 @Environment(EnvType.CLIENT)
 public class ExtendedLocatorBarClient implements ClientModInitializer {
@@ -13,6 +15,8 @@ public class ExtendedLocatorBarClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        ConfigManager.load();
+        ElbCommand.register();
         LOGGER.info("[Extended Locator Bar] Initialized successfully for Minecraft 1.21.11");
     }
 }

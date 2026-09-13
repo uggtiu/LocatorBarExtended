@@ -13,6 +13,9 @@
   "entrypoints": {
     "client": [
       "ru.uggtiu.extendedlocatorbar.ExtendedLocatorBarClient"
+    ],
+    "modmenu": [
+      "ru.uggtiu.extendedlocatorbar.gui.ModMenuIntegration"
     ]
   },
   "mixins": [
