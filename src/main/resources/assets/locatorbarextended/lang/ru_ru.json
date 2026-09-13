@@ -69,5 +69,20 @@
   "ble.command.player.nickname_scale": "§a[BLE] (%s) Масштаб ника для §f%s §aустановлен на: §f%s",
   "ble.command.player.reset.global": "§a[BLE] Настройки игрока §f%s §aсброшены (теперь следует Global).",
   "ble.command.player.reset.server": "§a[BLE] Серверные оверрайды для §f%s §aудалены (возврат к Global).",
-  "ble.command.player.reset.not_found": "§e[BLE] Не найдено настроек для §f%s §eв скоупе %s."
+  "ble.command.player.reset.not_found": "§e[BLE] Не найдено настроек для §f%s §eв скоупе %s.",
+  "ble.category.danger": "§cDanger / Fun",
+  "ble.category.danger.tooltip": "Экспериментальные и фановые функции, которые могут быть запрещены на серверах",
+  "ble.danger.universal_color": "Единый цвет всех иконок",
+  "ble.danger.universal_color.desc": "Окрашивает абсолютно все иконки путевых точек на баре в один выбранный цвет",
+  "ble.danger.universal_color_picker": "Выбор единого цвета",
+  "ble.danger.rainbow": "Радужные иконки",
+  "ble.danger.rainbow.desc": "Плавно переливает цвет иконок по цветовому кругу в виде волны",
+  "ble.danger.rainbow_speed": "Скорость радуги",
+  "ble.danger.overlay": "Locator Bar but not locator bar",
+  "ble.danger.overlay.desc": "Проецирует голову игрока прямо на экран поверх его позиции в мире, если он за стеной или дальше X блоков",
+  "ble.danger.overlay_distance": "Порог дистанции (X блоков)",
+  "ble.danger.overlay_distance.desc": "Если игрок дальше этого расстояния ИЛИ за стеной — его голова рисуется на экране",
+  "ble.danger.overlay_hide_bar": "Скрывать с панели при проекции",
+  "ble.danger.overlay_hide_bar.desc": "Убирает игрока с Locator Bar, пока он проецируется на экран",
+  "ble.danger.overlay_head_size": "Размер головы на экране"
 }

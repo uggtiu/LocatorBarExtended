@@ -26,8 +26,8 @@ public class BleConfigScreen {
         generalCategory.option(Option.<RenderMode>createBuilder()
                 .name(Text.translatable("ble.mode"))
                 .description(OptionDescription.of(Text.translatable("ble.mode.desc")))
-                .binding(RenderMode.HEAD, 
-                        () -> global.renderMode == RenderMode.DEFAULT ? RenderMode.HEAD : global.renderMode, 
+                .binding(RenderMode.HEAD,
+                        () -> global.renderMode == RenderMode.DEFAULT ? RenderMode.HEAD : global.renderMode,
                         val -> global.renderMode = (val == RenderMode.DEFAULT ? RenderMode.HEAD : val))
                 .controller(opt -> EnumControllerBuilder.create(opt)
                         .enumClass(RenderMode.class)
@@ -128,23 +128,85 @@ public class BleConfigScreen {
             }
         }
 
+        // 4. Danger / Fun Category
+        ConfigCategory.Builder dangerCategory = ConfigCategory.createBuilder()
+                .name(Text.translatable("ble.category.danger"))
+                .tooltip(Text.translatable("ble.category.danger.tooltip"));
+
+        // Universal color for all icons
+        dangerCategory.option(Option.<Boolean>createBuilder()
+                .name(Text.translatable("ble.danger.universal_color"))
+                .description(OptionDescription.of(Text.translatable("ble.danger.universal_color.desc")))
+                .binding(false, () -> global.universalIconColorEnabled, val -> global.universalIconColorEnabled = val)
+                .controller(TickBoxControllerBuilder::create)
+                .build());
+
+        dangerCategory.option(Option.<Color>createBuilder()
+                .name(Text.translatable("ble.danger.universal_color_picker"))
+                .binding(new Color(global.universalIconColor, true),
+                        () -> new Color(global.universalIconColor, true),
+                        col -> global.universalIconColor = col.getRGB())
+                .controller(opt -> ColorControllerBuilder.create(opt).allowAlpha(false))
+                .build());
+
+        // Rainbow icons
+        dangerCategory.option(Option.<Boolean>createBuilder()
+                .name(Text.translatable("ble.danger.rainbow"))
+                .description(OptionDescription.of(Text.translatable("ble.danger.rainbow.desc")))
+                .binding(false, () -> global.rainbowIcons, val -> global.rainbowIcons = val)
+                .controller(TickBoxControllerBuilder::create)
+                .build());
+
+        dangerCategory.option(Option.<Float>createBuilder()
+                .name(Text.translatable("ble.danger.rainbow_speed"))
+                .binding(1.0f, () -> global.rainbowSpeed, val -> global.rainbowSpeed = val)
+                .controller(opt -> FloatSliderControllerBuilder.create(opt).range(0.2f, 5.0f).step(0.2f))
+                .build());
+
+        // In-world Overlay (Locator Bar but not locator bar)
+        dangerCategory.option(Option.<Boolean>createBuilder()
+                .name(Text.translatable("ble.danger.overlay"))
+                .description(OptionDescription.of(Text.translatable("ble.danger.overlay.desc")))
+                .binding(false, () -> global.inWorldOverlayEnabled, val -> global.inWorldOverlayEnabled = val)
+                .controller(TickBoxControllerBuilder::create)
+                .build());
+
+        dangerCategory.option(Option.<Double>createBuilder()
+                .name(Text.translatable("ble.danger.overlay_distance"))
+                .description(OptionDescription.of(Text.translatable("ble.danger.overlay_distance.desc")))
+                .binding(16.0, () -> global.inWorldDistanceThreshold, val -> global.inWorldDistanceThreshold = val)
+                .controller(opt -> DoubleSliderControllerBuilder.create(opt).range(4.0, 128.0).step(2.0))
+                .build());
+
+        dangerCategory.option(Option.<Boolean>createBuilder()
+                .name(Text.translatable("ble.danger.overlay_hide_bar"))
+                .description(OptionDescription.of(Text.translatable("ble.danger.overlay_hide_bar.desc")))
+                .binding(true, () -> global.hideFromBarWhenOverlayed, val -> global.hideFromBarWhenOverlayed = val)
+                .controller(TickBoxControllerBuilder::create)
+                .build());
+
+        dangerCategory.option(Option.<Float>createBuilder()
+                .name(Text.translatable("ble.danger.overlay_head_size"))
+                .binding(14.0f, () -> global.inWorldHeadSize, val -> global.inWorldHeadSize = val)
+                .controller(opt -> FloatSliderControllerBuilder.create(opt).range(8.0f, 32.0f).step(1.0f))
+                .build());
+
         return YetAnotherConfigLib.createBuilder()
                 .title(Text.translatable("ble.title"))
                 .category(generalCategory.build())
                 .category(globalPlayersCategory.build())
                 .category(serverPlayersCategory.build())
+                .category(dangerCategory.build())
                 .save(ConfigManager::save)
                 .build()
                 .generateScreen(parent);
     }
 
     private static OptionGroup createPlayerGroup(String displayName, PlayerConfig p, GlobalConfig global, Screen parentScreen) {
-        String uuidStr = p.uuid != null ? "(" + p.uuid + ")" : "";
         OptionGroup.Builder playerGroup = OptionGroup.createBuilder()
                 .name(Text.translatable("ble.player.group_title", displayName))
-                .description(OptionDescription.of(Text.translatable("ble.player.group_desc", displayName, uuidStr)));
+                .description(OptionDescription.of(Text.literal(displayName + (p.uuid != null ? " (" + p.uuid + ")" : ""))));
 
-        // 1. Unified RenderMode
         playerGroup.option(Option.<RenderMode>createBuilder()
                 .name(Text.translatable("ble.mode"))
                 .binding(RenderMode.DEFAULT,
@@ -155,7 +217,6 @@ public class BleConfigScreen {
                         .formatValue(val -> Text.translatable(val.getTranslationKey())))
                 .build());
 
-        // 2. Clean Nicknames TriState
         playerGroup.option(Option.<TriState>createBuilder()
                 .name(Text.translatable("ble.clean_nicknames"))
                 .binding(TriState.DEFAULT,
@@ -166,7 +227,6 @@ public class BleConfigScreen {
                         .formatValue(val -> Text.translatable(val.getTranslationKey())))
                 .build());
 
-        // 3. Highlight TriState
         playerGroup.option(Option.<TriState>createBuilder()
                 .name(Text.translatable("ble.highlight"))
                 .binding(TriState.DEFAULT,
@@ -177,7 +237,6 @@ public class BleConfigScreen {
                         .formatValue(val -> Text.translatable(val.getTranslationKey())))
                 .build());
 
-        // 4. Highlight Color
         playerGroup.option(Option.<Color>createBuilder()
                 .name(Text.translatable("ble.highlight_color"))
                 .binding(new Color(p.highlightColor != null ? p.highlightColor : global.defaultHighlightColor, true),
@@ -186,7 +245,6 @@ public class BleConfigScreen {
                 .controller(opt -> ColorControllerBuilder.create(opt).allowAlpha(false))
                 .build());
 
-        // 5. Icon Color
         playerGroup.option(Option.<Color>createBuilder()
                 .name(Text.translatable("ble.icon_color"))
                 .binding(new Color(p.iconColor != null ? p.iconColor : 0xFF00FFCC, true),
@@ -195,7 +253,6 @@ public class BleConfigScreen {
                 .controller(opt -> ColorControllerBuilder.create(opt).allowAlpha(false))
                 .build());
 
-        // 6. Nickname Color
         playerGroup.option(Option.<Color>createBuilder()
                 .name(Text.translatable("ble.nickname_color"))
                 .binding(new Color(p.nicknameColor != null ? p.nicknameColor : 0xFFFFFFFF, true),
@@ -204,7 +261,6 @@ public class BleConfigScreen {
                 .controller(opt -> ColorControllerBuilder.create(opt).allowAlpha(false))
                 .build());
 
-        // 7. Head Rounding (-1 = default from global)
         playerGroup.option(Option.<Integer>createBuilder()
                 .name(Text.translatable("ble.head_rounding"))
                 .description(OptionDescription.of(Text.translatable("ble.head_rounding.desc_player", String.valueOf(global.headRounding))))
@@ -214,7 +270,6 @@ public class BleConfigScreen {
                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-1, 100).step(5))
                 .build());
 
-        // 8. Nickname Scale (0.0 = default from global)
         playerGroup.option(Option.<Float>createBuilder()
                 .name(Text.translatable("ble.nickname_scale"))
                 .description(OptionDescription.of(Text.translatable("ble.nickname_scale.desc_player", String.format("%.1f", global.nicknameScale))))
@@ -224,7 +279,6 @@ public class BleConfigScreen {
                 .controller(opt -> FloatSliderControllerBuilder.create(opt).range(0.0f, 2.0f).step(0.1f))
                 .build());
 
-        // 9. Reset Button
         playerGroup.option(ButtonOption.createBuilder()
                 .name(Text.translatable("ble.player.reset_button"))
                 .description(OptionDescription.of(Text.translatable("ble.player.reset_button.desc")))

@@ -7,15 +7,19 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.PlayerSkinDrawer;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.PlayerListEntry;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.SkinTextures;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
+import net.minecraft.world.waypoint.EntityTickProgress;
 import net.minecraft.world.waypoint.TrackedWaypoint;
+import org.joml.Matrix3x2fStack;
 import ru.uggtiu.locatorbarextended.config.ConfigManager;
+import ru.uggtiu.locatorbarextended.config.GlobalConfig;
 import ru.uggtiu.locatorbarextended.config.RenderMode;
 
-import org.joml.Matrix3x2fStack;
-
+import java.awt.Color;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -45,8 +49,21 @@ public class PlayerMarkerRenderer {
         PlayerListEntry playerEntry = networkHandler.getPlayerListEntry(playerUuid);
         if (playerEntry == null) return false;
 
-        String playerName = playerEntry.getProfile().name();
+        GlobalConfig global = ConfigManager.get().global;
 
+        // In-world projection check: hide from locator bar if projected onto screen
+        if (global.inWorldOverlayEnabled && global.hideFromBarWhenOverlayed && client.world != null) {
+            Entity cameraEntity = client.getCameraEntity();
+            World world = cameraEntity != null ? cameraEntity.getEntityWorld() : null;
+            if (cameraEntity != null && world != null) {
+                EntityTickProgress tickProgress = (e) -> 1.0f;
+                if (InWorldOverlayRenderer.shouldShowWaypointInWorld(waypoint, cameraEntity, world, tickProgress)) {
+                    return true; // Skips rendering on locator bar
+                }
+            }
+        }
+
+        String playerName = playerEntry.getProfile().name();
         ConfigManager.autoRemember(playerName, playerUuid);
         ConfigManager.EffectiveSettings settings = ConfigManager.getEffectiveSettings(playerName, playerUuid);
 
@@ -56,16 +73,16 @@ public class PlayerMarkerRenderer {
         if (settings.mode == RenderMode.HEAD) {
             SkinTextures skin = playerEntry.getSkinTextures();
             if (skin != null) {
-                int iconSize = Math.max(1, Math.round(ConfigManager.get().global.headSize));
+                int iconSize = Math.max(1, Math.round(global.headSize));
                 int headX = centerX - iconSize / 2;
                 int headY = centerY - iconSize / 2;
 
                 PlayerSkinDrawer.draw(context, skin, headX, headY, iconSize);
                 renderHeadFrameAndRounding(context, headX, headY, iconSize, settings.headRounding, settings.highlight, settings.highlightColor);
 
-                if (ConfigManager.get().global.showNicknames) {
+                if (global.showNicknames) {
                     renderNickname(context, client.textRenderer, playerEntry, headX, headY, iconSize,
-                            ConfigManager.get().global.enhancedNickname, settings.nicknameColor, settings.nicknameScale,
+                            global.enhancedNickname, settings.nicknameColor, settings.nicknameScale,
                             settings.highlight, settings.highlightColor, settings.cleanNicknames);
                 }
 
@@ -73,9 +90,9 @@ public class PlayerMarkerRenderer {
             }
         }
 
-        if (ConfigManager.get().global.showNicknames) {
+        if (global.showNicknames) {
             renderNickname(context, client.textRenderer, playerEntry, x, y, width,
-                    ConfigManager.get().global.enhancedNickname, settings.nicknameColor, settings.nicknameScale,
+                    global.enhancedNickname, settings.nicknameColor, settings.nicknameScale,
                     settings.highlight, settings.highlightColor, settings.cleanNicknames);
         }
 
@@ -83,6 +100,22 @@ public class PlayerMarkerRenderer {
     }
 
     public static int getEffectiveIconColor(TrackedWaypoint waypoint, int vanillaColor) {
+        GlobalConfig global = ConfigManager.get().global;
+
+        // 1. Rainbow icons: applies strictly to waypoint icons
+        if (global.rainbowIcons) {
+            int seed = waypoint != null ? waypoint.hashCode() : vanillaColor;
+            if (waypoint != null && waypoint.getSource().left().isPresent()) {
+                seed = waypoint.getSource().left().get().hashCode();
+            }
+            return getRainbowColor(seed, global.rainbowSpeed);
+        }
+
+        // 2. Universal single color for all icons
+        if (global.universalIconColorEnabled) {
+            return global.universalIconColor;
+        }
+
         if (waypoint == null) return vanillaColor;
         Optional<UUID> playerUuidOpt = waypoint.getSource().left();
         if (playerUuidOpt.isEmpty()) return vanillaColor;
@@ -106,17 +139,29 @@ public class PlayerMarkerRenderer {
         return vanillaColor;
     }
 
-    private static void renderHeadFrameAndRounding(
-            DrawContext context,
-            int x,
-            int y,
-            int size,
-            int rounding,
-            boolean highlight,
-            int highlightColor
-    ) {
-        if (!highlight && rounding <= 0) return;
+/**
+     * Calculates smooth animated rainbow wave color based on time and player/waypoint seed.
+     * Fixed: uses long modulo first to prevent float precision truncation.
+     */
+    public static int getRainbowColor(int seed, float speed) {
+        // Base cycle: 3000 milliseconds (3 seconds) for a full rainbow turn at 1.0x speed
+        long period = (long) (3000.0f / Math.max(0.05f, speed));
+        long timeInCycle = System.currentTimeMillis() % period;
 
+        // Smooth progress from 0.0 to 1.0 with single-millisecond precision
+        float progress = (float) timeInCycle / (float) period;
+
+        // Wave offset per waypoint / player seed
+        float offset = ((seed & 0xFFFF) % 360) / 360.0f;
+        float hue = (progress + offset) % 1.0f;
+        if (hue < 0) hue += 1.0f;
+
+        // HSB to ARGB with 100% alpha
+        return 0xFF000000 | (Color.HSBtoRGB(hue, 0.85f, 1.0f) & 0x00FFFFFF);
+    }
+
+    private static void renderHeadFrameAndRounding(DrawContext context, int x, int y, int size, int rounding, boolean highlight, int highlightColor) {
+        if (!highlight && rounding <= 0) return;
         int frameColor = highlight ? highlightColor : 0xAA000000;
 
         if (rounding <= 0) {
@@ -139,28 +184,8 @@ public class PlayerMarkerRenderer {
         }
     }
 
-    private static void renderNickname(
-            DrawContext context,
-            TextRenderer textRenderer,
-            PlayerListEntry entry,
-            int anchorX,
-            int anchorY,
-            int anchorWidth,
-            boolean enhanced,
-            int textColor,
-            float scale,
-            boolean highlight,
-            int highlightColor,
-            boolean cleanNicknames
-    ) {
-        Text nameText;
-        if (cleanNicknames) {
-            // Raw account username with stripped server icons/ranks/emojis
-            nameText = Text.literal(entry.getProfile().name());
-        } else {
-            Text displayName = entry.getDisplayName();
-            nameText = displayName != null ? displayName : Text.literal(entry.getProfile().name());
-        }
+    private static void renderNickname(DrawContext context, TextRenderer textRenderer, PlayerListEntry entry, int anchorX, int anchorY, int anchorWidth, boolean enhanced, int textColor, float scale, boolean highlight, int highlightColor, boolean cleanNicknames) {
+        Text nameText = cleanNicknames ? Text.literal(entry.getProfile().name()) : (entry.getDisplayName() != null ? entry.getDisplayName() : Text.literal(entry.getProfile().name()));
 
         int textWidth = textRenderer.getWidth(nameText);
         int centerX = anchorX + anchorWidth / 2;

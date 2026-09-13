@@ -69,5 +69,20 @@
   "ble.command.player.nickname_scale": "§a[BLE] (%s) Nickname scale for §f%s §aset to: §f%s",
   "ble.command.player.reset.global": "§a[BLE] Player §f%s §aoverrides reset to default (now following Global).",
   "ble.command.player.reset.server": "§a[BLE] Server overrides for §f%s §aremoved (falling back to Global).",
-  "ble.command.player.reset.not_found": "§e[BLE] No overrides found for §f%s §ein %s scope."
+  "ble.command.player.reset.not_found": "§e[BLE] No overrides found for §f%s §ein %s scope.",
+  "ble.category.danger": "§cDanger / Fun",
+  "ble.category.danger.tooltip": "Experimental & fun features that may be restricted on servers",
+  "ble.danger.universal_color": "Universal Icon Color",
+  "ble.danger.universal_color.desc": "Forces all waypoint icons to render in a single chosen color",
+  "ble.danger.universal_color_picker": "Choose Universal Color",
+  "ble.danger.rainbow": "Rainbow Wave Icons",
+  "ble.danger.rainbow.desc": "Cycles icon colors continuously across the HSV spectrum",
+  "ble.danger.rainbow_speed": "Rainbow Cycle Speed",
+  "ble.danger.overlay": "Locator Bar but not locator bar",
+  "ble.danger.overlay.desc": "Projects the player's head directly onto the screen over their in-world position if behind a wall or beyond X blocks",
+  "ble.danger.overlay_distance": "Distance Threshold (X blocks)",
+  "ble.danger.overlay_distance.desc": "If player is beyond this distance OR behind a wall, head appears on screen",
+  "ble.danger.overlay_hide_bar": "Hide from Bar when Projected",
+  "ble.danger.overlay_hide_bar.desc": "Removes player from Locator Bar while their head is projected in-world",
+  "ble.danger.overlay_head_size": "Screen Head Size"
 }

@@ -3,7 +3,8 @@
   "package": "ru.uggtiu.locatorbarextended.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "LocatorBarMixin"
+    "LocatorBarMixin",
+    "GameRendererAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
