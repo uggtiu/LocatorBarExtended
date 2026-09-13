@@ -1,4 +1,4 @@
-package ru.uggtiu.extendedlocatorbar.config;
+package ru.uggtiu.locatorbarextended.config;
 
 public class GlobalConfig {
     public RenderMode renderMode = RenderMode.HEAD;

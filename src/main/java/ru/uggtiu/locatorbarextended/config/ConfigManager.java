@@ -1,4 +1,4 @@
-package ru.uggtiu.extendedlocatorbar.config;
+package ru.uggtiu.locatorbarextended.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,11 +16,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class ConfigManager {
-    private static final Logger LOGGER = LoggerFactory.getLogger("extendedlocatorbar");
+    private static final Logger LOGGER = LoggerFactory.getLogger("locatorbarextended");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final File CONFIG_FILE = FabricLoader.getInstance()
             .getConfigDir()
-            .resolve("extendedlocatorbar")
+            .resolve("locatorbarextended")
             .resolve("config.json")
             .toFile();
 

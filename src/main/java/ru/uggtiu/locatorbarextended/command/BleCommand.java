@@ -1,4 +1,4 @@
-package ru.uggtiu.extendedlocatorbar.command;
+package ru.uggtiu.locatorbarextended.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
@@ -11,7 +11,7 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallba
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.text.Text;
-import ru.uggtiu.extendedlocatorbar.config.*;
+import ru.uggtiu.locatorbarextended.config.*;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -19,7 +19,7 @@ import java.util.Map;
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.argument;
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
 
-public class ElbCommand {
+public class BleCommand {
 
     private static final SuggestionProvider<FabricClientCommandSource> PLAYER_SUGGESTIONS = (context, builder) -> {
         var networkHandler = context.getSource().getClient().getNetworkHandler();
@@ -39,17 +39,17 @@ public class ElbCommand {
 
     public static void register() {
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
-            registerCommands(dispatcher, "elb");
-            registerCommands(dispatcher, "extendedlocatorbar");
+            registerCommands(dispatcher, "ble");
+            registerCommands(dispatcher, "locatorbarextended");
         });
     }
 
     private static void registerCommands(CommandDispatcher<FabricClientCommandSource> dispatcher, String rootName) {
         dispatcher.register(literal(rootName)
-            .then(literal("reload").executes(ElbCommand::executeReload))
+            .then(literal("reload").executes(BleCommand::executeReload))
             .then(literal("gui").executes(ctx -> {
                 var client = ctx.getSource().getClient();
-                client.send(() -> client.setScreen(ru.uggtiu.extendedlocatorbar.gui.ElbConfigScreen.createScreen(client.currentScreen)));
+                client.send(() -> client.setScreen(ru.uggtiu.locatorbarextended.gui.BleConfigScreen.createScreen(client.currentScreen)));
                 return 1;
             }))
             // Global branch
@@ -59,25 +59,25 @@ public class ElbCommand {
                     .then(literal("icon").executes(ctx -> setGlobalMode(ctx, RenderMode.ICON))))
                 .then(literal("icon_color")
                     .then(argument("color", StringArgumentType.string())
-                        .executes(ElbCommand::setGlobalIconColor)))
+                        .executes(BleCommand::setGlobalIconColor)))
                 .then(literal("clean_nicknames")
                     .then(argument("enabled", BoolArgumentType.bool())
-                        .executes(ElbCommand::setGlobalCleanNicknames)))
+                        .executes(BleCommand::setGlobalCleanNicknames)))
                 .then(literal("head_size")
                     .then(argument("size", FloatArgumentType.floatArg(4.0f, 32.0f))
-                        .executes(ElbCommand::setGlobalHeadSize)))
+                        .executes(BleCommand::setGlobalHeadSize)))
                 .then(literal("rounding")
                     .then(argument("percent", IntegerArgumentType.integer(0, 100))
-                        .executes(ElbCommand::setGlobalRounding)))
+                        .executes(BleCommand::setGlobalRounding)))
                 .then(literal("nicknames")
                     .then(argument("enabled", BoolArgumentType.bool())
-                        .executes(ElbCommand::setGlobalNicknames)))
+                        .executes(BleCommand::setGlobalNicknames)))
                 .then(literal("enhanced")
                     .then(argument("enabled", BoolArgumentType.bool())
-                        .executes(ElbCommand::setGlobalEnhanced)))
+                        .executes(BleCommand::setGlobalEnhanced)))
                 .then(literal("scale")
                     .then(argument("scale", FloatArgumentType.floatArg(0.2f, 3.0f))
-                        .executes(ElbCommand::setGlobalScale)))
+                        .executes(BleCommand::setGlobalScale)))
                 .then(literal("highlight")
                     .then(argument("enabled", BoolArgumentType.bool())
                         .executes(ctx -> setGlobalHighlight(ctx, null))
@@ -149,7 +149,7 @@ public class ElbCommand {
 
     private static int executeReload(CommandContext<FabricClientCommandSource> ctx) {
         ConfigManager.load();
-        ctx.getSource().sendFeedback(Text.translatable("elb.command.reload"));
+        ctx.getSource().sendFeedback(Text.translatable("ble.command.reload"));
         return 1;
     }
 
@@ -158,7 +158,7 @@ public class ElbCommand {
     private static int setGlobalMode(CommandContext<FabricClientCommandSource> ctx, RenderMode mode) {
         ConfigManager.get().global.renderMode = mode;
         ConfigManager.save();
-        ctx.getSource().sendFeedback(Text.translatable("elb.command.global.mode", Text.translatable(mode.getTranslationKey())));
+        ctx.getSource().sendFeedback(Text.translatable("ble.command.global.mode", Text.translatable(mode.getTranslationKey())));
         return 1;
     }
 
@@ -166,7 +166,7 @@ public class ElbCommand {
         boolean enabled = BoolArgumentType.getBool(ctx, "enabled");
         ConfigManager.get().global.cleanNicknames = enabled;
         ConfigManager.save();
-        ctx.getSource().sendFeedback(Text.translatable("elb.command.global.clean_nicknames", enabled));
+        ctx.getSource().sendFeedback(Text.translatable("ble.command.global.clean_nicknames", enabled));
         return 1;
     }
 
@@ -174,7 +174,7 @@ public class ElbCommand {
         String colorStr = StringArgumentType.getString(ctx, "color");
         ConfigManager.get().global.defaultIconColor = parseColor(colorStr, 0xFF00FFCC);
         ConfigManager.save();
-        ctx.getSource().sendFeedback(Text.translatable("elb.command.global.icon_color"));
+        ctx.getSource().sendFeedback(Text.translatable("ble.command.global.icon_color"));
         return 1;
     }
 
@@ -182,7 +182,7 @@ public class ElbCommand {
         float size = FloatArgumentType.getFloat(ctx, "size");
         ConfigManager.get().global.headSize = size;
         ConfigManager.save();
-        ctx.getSource().sendFeedback(Text.translatable("elb.command.global.head_size", size));
+        ctx.getSource().sendFeedback(Text.translatable("ble.command.global.head_size", size));
         return 1;
     }
 
@@ -190,7 +190,7 @@ public class ElbCommand {
         int rounding = IntegerArgumentType.getInteger(ctx, "percent");
         ConfigManager.get().global.headRounding = rounding;
         ConfigManager.save();
-        ctx.getSource().sendFeedback(Text.translatable("elb.command.global.rounding", rounding));
+        ctx.getSource().sendFeedback(Text.translatable("ble.command.global.rounding", rounding));
         return 1;
     }
 
@@ -198,7 +198,7 @@ public class ElbCommand {
         boolean enabled = BoolArgumentType.getBool(ctx, "enabled");
         ConfigManager.get().global.showNicknames = enabled;
         ConfigManager.save();
-        ctx.getSource().sendFeedback(Text.translatable("elb.command.global.nicknames", enabled));
+        ctx.getSource().sendFeedback(Text.translatable("ble.command.global.nicknames", enabled));
         return 1;
     }
 
@@ -206,7 +206,7 @@ public class ElbCommand {
         boolean enabled = BoolArgumentType.getBool(ctx, "enabled");
         ConfigManager.get().global.enhancedNickname = enabled;
         ConfigManager.save();
-        ctx.getSource().sendFeedback(Text.translatable("elb.command.global.enhanced", enabled));
+        ctx.getSource().sendFeedback(Text.translatable("ble.command.global.enhanced", enabled));
         return 1;
     }
 
@@ -214,7 +214,7 @@ public class ElbCommand {
         float scale = FloatArgumentType.getFloat(ctx, "scale");
         ConfigManager.get().global.nicknameScale = scale;
         ConfigManager.save();
-        ctx.getSource().sendFeedback(Text.translatable("elb.command.global.scale", scale));
+        ctx.getSource().sendFeedback(Text.translatable("ble.command.global.scale", scale));
         return 1;
     }
 
@@ -225,7 +225,7 @@ public class ElbCommand {
             ConfigManager.get().global.defaultHighlightColor = parseColor(colorStr, 0xFFFF0000);
         }
         ConfigManager.save();
-        ctx.getSource().sendFeedback(Text.translatable("elb.command.global.highlight", enabled));
+        ctx.getSource().sendFeedback(Text.translatable("ble.command.global.highlight", enabled));
         return 1;
     }
 
@@ -236,7 +236,7 @@ public class ElbCommand {
         PlayerConfig cfg = getOrCreatePlayerConfig(target, scope);
         cfg.renderMode = mode;
         ConfigManager.save();
-        ctx.getSource().sendFeedback(Text.translatable("elb.command.player.mode", scope, target, Text.translatable(mode.getTranslationKey())));
+        ctx.getSource().sendFeedback(Text.translatable("ble.command.player.mode", scope, target, Text.translatable(mode.getTranslationKey())));
         return 1;
     }
 
@@ -246,7 +246,7 @@ public class ElbCommand {
         PlayerConfig cfg = getOrCreatePlayerConfig(target, scope);
         cfg.cleanNicknames = enabled;
         ConfigManager.save();
-        ctx.getSource().sendFeedback(Text.translatable("elb.command.player.clean_nicknames", scope, target, enabled));
+        ctx.getSource().sendFeedback(Text.translatable("ble.command.player.clean_nicknames", scope, target, enabled));
         return 1;
     }
 
@@ -256,7 +256,7 @@ public class ElbCommand {
         PlayerConfig cfg = getOrCreatePlayerConfig(target, scope);
         cfg.iconColor = parseColor(colorStr, 0xFF00FFCC);
         ConfigManager.save();
-        ctx.getSource().sendFeedback(Text.translatable("elb.command.player.icon_color", scope, target));
+        ctx.getSource().sendFeedback(Text.translatable("ble.command.player.icon_color", scope, target));
         return 1;
     }
 
@@ -269,7 +269,7 @@ public class ElbCommand {
             cfg.highlightColor = parseColor(colorStr, 0xFFFF0000);
         }
         ConfigManager.save();
-        ctx.getSource().sendFeedback(Text.translatable("elb.command.player.highlight", scope, target, enabled));
+        ctx.getSource().sendFeedback(Text.translatable("ble.command.player.highlight", scope, target, enabled));
         return 1;
     }
 
@@ -279,7 +279,7 @@ public class ElbCommand {
         PlayerConfig cfg = getOrCreatePlayerConfig(target, scope);
         cfg.headRounding = rounding;
         ConfigManager.save();
-        ctx.getSource().sendFeedback(Text.translatable("elb.command.player.rounding", scope, target, rounding));
+        ctx.getSource().sendFeedback(Text.translatable("ble.command.player.rounding", scope, target, rounding));
         return 1;
     }
 
@@ -289,7 +289,7 @@ public class ElbCommand {
         PlayerConfig cfg = getOrCreatePlayerConfig(target, scope);
         cfg.nicknameColor = parseColor(colorStr, 0xFFFFFFFF);
         ConfigManager.save();
-        ctx.getSource().sendFeedback(Text.translatable("elb.command.player.nickname_color", scope, target));
+        ctx.getSource().sendFeedback(Text.translatable("ble.command.player.nickname_color", scope, target));
         return 1;
     }
 
@@ -299,7 +299,7 @@ public class ElbCommand {
         PlayerConfig cfg = getOrCreatePlayerConfig(target, scope);
         cfg.nicknameScale = scale;
         ConfigManager.save();
-        ctx.getSource().sendFeedback(Text.translatable("elb.command.player.nickname_scale", scope, target, scale));
+        ctx.getSource().sendFeedback(Text.translatable("ble.command.player.nickname_scale", scope, target, scale));
         return 1;
     }
 
@@ -320,7 +320,7 @@ public class ElbCommand {
                 p.nicknameScale = null;
                 p.cleanNicknames = null;
                 ConfigManager.save();
-                ctx.getSource().sendFeedback(Text.translatable("elb.command.player.reset.global", target));
+                ctx.getSource().sendFeedback(Text.translatable("ble.command.player.reset.global", target));
                 return 1;
             }
         } else {
@@ -330,13 +330,13 @@ public class ElbCommand {
                 PlayerConfig p = removeFromMap(serverMap, lowerTarget);
                 if (p != null) {
                     ConfigManager.save();
-                    ctx.getSource().sendFeedback(Text.translatable("elb.command.player.reset.server", target));
+                    ctx.getSource().sendFeedback(Text.translatable("ble.command.player.reset.server", target));
                     return 1;
                 }
             }
         }
 
-        ctx.getSource().sendFeedback(Text.translatable("elb.command.player.reset.not_found", target, scope));
+        ctx.getSource().sendFeedback(Text.translatable("ble.command.player.reset.not_found", target, scope));
         return 1;
     }
 

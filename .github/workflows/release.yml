@@ -49,4 +49,4 @@ jobs:
           prerelease: false
           generate_release_notes: true
           files: |
-            build/libs/extendedlocatorbar-*.jar
+            build/libs/LocatorBarExtended-*.jar

@@ -1,0 +1,73 @@
+{
+  "ble.title": "Extended Locator Bar",
+  "ble.category.general": "Общие настройки",
+  "ble.category.general.tooltip": "Глобальные параметры панели локатора",
+  "ble.category.players.global": "Игроки (Глобально)",
+  "ble.category.players.global.tooltip": "Настройки игроков, действующие во всех мирах и серверах",
+  "ble.category.players.server": "Игроки (Сервер)",
+  "ble.category.players.server.tooltip": "Настройки игроков для текущего сервера: %s",
+
+  "ble.mode": "Режим отображения",
+  "ble.mode.desc": "Головы игроков со скином или стандартные цветные иконки",
+  "ble.mode.default": "По умолчанию (Global)",
+  "ble.mode.head": "Голова",
+  "ble.mode.icon": "Иконка",
+
+  "ble.tristate.default": "По умолчанию (Global)",
+  "ble.tristate.enabled": "Включено",
+  "ble.tristate.disabled": "Выключено",
+
+  "ble.clean_nicknames": "Чистые ники",
+  "ble.clean_nicknames.desc": "Использовать чистое имя аккаунта без серверных рангов, клан-тегов и иконок",
+
+  "ble.head_size": "Размер головы",
+  "ble.head_rounding": "Закругление голов (%)",
+  "ble.head_rounding.desc_player": "-1 означает наследование из Global (%s%%)",
+
+  "ble.show_nicknames": "Отображать никнеймы",
+  "ble.enhanced_nickname": "Улучшенный вид (Bubble)",
+  "ble.enhanced_nickname.desc": "Отображать ник в стильной плашке со стрелочкой вниз",
+  "ble.nickname_scale": "Масштаб шрифта ника",
+  "ble.nickname_scale.desc_player": "0.0 означает наследование из Global (%sx)",
+
+  "ble.highlight": "Хайлайт (Обводка)",
+  "ble.highlight.global": "Глобальный хайлайт",
+  "ble.highlight.global.desc": "Включить цветную обводку для всех игроков",
+  "ble.highlight_color": "Цвет хайлайта",
+  "ble.highlight_color.default": "Цвет хайлайта по умолчанию",
+
+  "ble.icon_color": "Цвет иконки (в режиме Icon)",
+  "ble.nickname_color": "Цвет никнейма",
+  "ble.auto_remember": "Автозапоминание игроков",
+  "ble.auto_remember.desc": "Автоматически сохранять найденных игроков в конфиг для быстрой настройки",
+
+  "ble.player.group_title": "Игрок: %s",
+  "ble.player.group_desc": "Настройки для %s %s",
+  "ble.player.reset_button": "§eСбросить к настройкам Global",
+  "ble.player.reset_button.desc": "Сбрасывает все персональные настройки этого игрока. Он продолжит отображаться, повторяя Global.",
+
+  "ble.empty_list.global": "§7Глобальный список пуст. Игроки добавляются автоматически при встрече.",
+  "ble.empty_list.server": "§7Список пуст для текущего сервера (§f%s§7).",
+
+  "ble.command.reload": "§a[BLE] Конфигурация успешно перезагружена!",
+  "ble.command.global.mode": "§a[BLE] Глобальный режим отображения установлен на: §f%s",
+  "ble.command.global.clean_nicknames": "§a[BLE] Чистые ники (без префиксов/эмодзи) установлены на: §f%s",
+  "ble.command.global.icon_color": "§a[BLE] Глобальный цвет иконки обновлен!",
+  "ble.command.global.head_size": "§a[BLE] Глобальный размер головы установлен на: §f%s",
+  "ble.command.global.rounding": "§a[BLE] Глобальное закругление голов установлено на: §f%s%%",
+  "ble.command.global.nicknames": "§a[BLE] Отображение никнеймов установлено на: §f%s",
+  "ble.command.global.enhanced": "§a[BLE] Улучшенный вид (Bubble) установлен на: §f%s",
+  "ble.command.global.scale": "§a[BLE] Глобальный масштаб ников установлен на: §f%s",
+  "ble.command.global.highlight": "§a[BLE] Глобальный хайлайт установлен на: §f%s",
+
+  "ble.command.player.mode": "§a[BLE] (%s) Режим для §f%s §aустановлен на: §f%s",
+  "ble.command.player.clean_nicknames": "§a[BLE] (%s) Чистые ники для §f%s §aустановлены на: §f%s",
+  "ble.command.player.icon_color": "§a[BLE] (%s) Цвет иконки для §f%s §aобновлен!",
+  "ble.command.player.highlight": "§a[BLE] (%s) Хайлайт для §f%s §aустановлен на: §f%s",
+  "ble.command.player.rounding": "§a[BLE] (%s) Закругление для §f%s §aустановлено на: §f%s%%",
+  "ble.command.player.nickname_color": "§a[BLE] (%s) Цвет никнейма для §f%s §aобновлен!",
+  "ble.command.player.nickname_scale": "§a[BLE] (%s) Масштаб ника для §f%s §aустановлен на: §f%s",
+  "ble.command.player.reset.global": "§a[BLE] Настройки игрока §f%s §aсброшены (теперь следует Global).",
+  "ble.command.player.reset.server": "§a[BLE] Серверные оверрайды для §f%s §aудалены (возврат к Global).",
+  "ble.command.player.reset.not_found": "§e[BLE] Не найдено настроек для §f%s §eв скоупе %s."
+}

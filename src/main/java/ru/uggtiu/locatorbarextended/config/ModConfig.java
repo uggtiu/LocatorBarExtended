@@ -1,4 +1,4 @@
-package ru.uggtiu.extendedlocatorbar.config;
+package ru.uggtiu.locatorbarextended.config;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

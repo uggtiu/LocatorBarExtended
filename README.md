@@ -6,10 +6,10 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 
 <!--
-[![Modrinth](https://img.shields.io/badge/Modrinth-Available-00AF5C?style=flat-square&logo=modrinth&logoColor=white)](https://modrinth.com/mod/extended-locator-bar)
-[![CurseForge](https://img.shields.io/badge/CurseForge-Available-F16436?style=flat-square&logo=curseforge&logoColor=white)](https://curseforge.com/minecraft/mc-mods/extended-locator-bar)
+[![Modrinth](https://img.shields.io/badge/Modrinth-Available-00AF5C?style=flat-square&logo=modrinth&logoColor=white)](https://modrinth.com/mod/locatorbarextended)
+[![CurseForge](https://img.shields.io/badge/CurseForge-Available-F16436?style=flat-square&logo=curseforge&logoColor=white)](https://curseforge.com/minecraft/mc-mods/locatorbarextended)
 -->
-[![GitHub Release](https://img.shields.io/github/v/release/uggtiu/extended-locator-bar?style=flat-square&color=6f42c1&logo=github)](https://github.com/uggtiu/extended-locator-bar/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/uggtiu/LocatorBarExtended?style=flat-square&color=6f42c1&logo=github)](https://github.com/uggtiu/LocatorBarExtended/releases)
 
 Клиентский мод для Minecraft 1.21.11, преображающий стандартную панель Locator Bar: скины игроков, настраиваемые плашки ников, гибкие профили и кастомные цвета.
 
@@ -32,28 +32,28 @@
 
 ## 📸 Скриншоты
 
-![In-game Screenshot1](https://raw.githubusercontent.com/uggtiu/extended-locator-bar/main/screenshot1.jpg)
-![In-game Screenshot2](https://raw.githubusercontent.com/uggtiu/extended-locator-bar/main/screenshot2.png)
+![In-game Screenshot1](https://raw.githubusercontent.com/uggtiu/LocatorBarExtended/main/screenshot1.jpg)
+![In-game Screenshot2](https://raw.githubusercontent.com/uggtiu/LocatorBarExtended/main/screenshot2.png)
 
 ---
 
-## ⌨️ Команды в чате (`/elb`)
+## ⌨️ Команды в чате (`/ble`)
 
 | Команда | Описание |
 | :--- | :--- |
-| `/elb gui` | Открыть визуальное меню настроек |
-| `/elb reload` | Перезагрузить конфиг с диска |
-| `/elb global mode <head\|icon>` | Глобальный режим отображения |
-| `/elb global clean_nicknames <true\|false>` | Включить/выключить чистые ники без серверных эмодзи |
-| `/elb global head_size <4-24>` | Базовый размер головы |
-| `/elb global rounding <0-100>` | Процент закругления голов |
-| `/elb global highlight <true\|false> [цвет]` | Глобальная цветная обводка |
-| `/elb global enhanced <true\|false>` | Переключение плашки Bubble / классического текста |
-| `/elb player <ник> mode <head\|icon> [server\|global]` | Режим конкретного игрока |
-| `/elb player <ник> icon_color <цвет> [server\|global]` | Цвет ванильного ромбика игрока |
-| `/elb player <ник> highlight <true\|false> [цвет] [server\|global]` | Хайлайт конкретного игрока |
-| `/elb player <ник> nickname_color <цвет> [server\|global]` | Цвет текста ника игрока |
-| `/elb player <ник> reset [server\|global]` | Сбросить оверрайды игрока к настройкам Global |
+| `/ble gui` | Открыть визуальное меню настроек |
+| `/ble reload` | Перезагрузить конфиг с диска |
+| `/ble global mode <head\|icon>` | Глобальный режим отображения |
+| `/ble global clean_nicknames <true\|false>` | Включить/выключить чистые ники без серверных эмодзи |
+| `/ble global head_size <4-24>` | Базовый размер головы |
+| `/ble global rounding <0-100>` | Процент закругления голов |
+| `/ble global highlight <true\|false> [цвет]` | Глобальная цветная обводка |
+| `/ble global enhanced <true\|false>` | Переключение плашки Bubble / классического текста |
+| `/ble player <ник> mode <head\|icon> [server\|global]` | Режим конкретного игрока |
+| `/ble player <ник> icon_color <цвет> [server\|global]` | Цвет ванильного ромбика игрока |
+| `/ble player <ник> highlight <true\|false> [цвет] [server\|global]` | Хайлайт конкретного игрока |
+| `/ble player <ник> nickname_color <цвет> [server\|global]` | Цвет текста ника игрока |
+| `/ble player <ник> reset [server\|global]` | Сбросить оверрайды игрока к настройкам Global |
 
 > **Формат цветов:** поддерживаются HEX (`#FF0000`, `0x00FFCC`) и ключевые слова (`red`, `green`, `blue`, `gold`, `purple` и др.).
 

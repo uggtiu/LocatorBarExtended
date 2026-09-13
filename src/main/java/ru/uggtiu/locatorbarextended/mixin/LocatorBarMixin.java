@@ -1,4 +1,4 @@
-package ru.uggtiu.extendedlocatorbar.mixin;
+package ru.uggtiu.locatorbarextended.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -10,9 +10,10 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.bar.LocatorBar;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.waypoint.TrackedWaypoint;
+import ru.uggtiu.locatorbarextended.render.PlayerMarkerRenderer;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import ru.uggtiu.extendedlocatorbar.render.PlayerMarkerRenderer;
 
 @Environment(EnvType.CLIENT)
 @Mixin(LocatorBar.class)

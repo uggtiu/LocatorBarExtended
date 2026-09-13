@@ -1,9 +1,9 @@
-package ru.uggtiu.extendedlocatorbar.config;
+package ru.uggtiu.locatorbarextended.config;
 
 public enum TriState {
-    DEFAULT("elb.tristate.default"),
-    ENABLED("elb.tristate.enabled"),
-    DISABLED("elb.tristate.disabled");
+    DEFAULT("ble.tristate.default"),
+    ENABLED("ble.tristate.enabled"),
+    DISABLED("ble.tristate.disabled");
 
     private final String translationKey;
 

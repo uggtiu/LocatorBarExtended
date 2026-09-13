@@ -1,4 +1,4 @@
-package ru.uggtiu.extendedlocatorbar.render;
+package ru.uggtiu.locatorbarextended.render;
 
 import com.mojang.blaze3d.pipeline.RenderPipeline;
 import net.minecraft.client.MinecraftClient;
@@ -11,9 +11,10 @@ import net.minecraft.entity.player.SkinTextures;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.waypoint.TrackedWaypoint;
+import ru.uggtiu.locatorbarextended.config.ConfigManager;
+import ru.uggtiu.locatorbarextended.config.RenderMode;
+
 import org.joml.Matrix3x2fStack;
-import ru.uggtiu.extendedlocatorbar.config.ConfigManager;
-import ru.uggtiu.extendedlocatorbar.config.RenderMode;
 
 import java.util.Optional;
 import java.util.UUID;

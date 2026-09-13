@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "extendedlocatorbar",
+  "id": "locatorbarextended",
   "version": "${version}",
-  "name": "Extended Locator Bar",
+  "name": "LocatorBar Extended",
   "description": "A mod that extends the functionality of the locator bar in Minecraft.",
   "authors": [
     "uggtiu"
@@ -12,14 +12,14 @@
   "environment": "client",
   "entrypoints": {
     "client": [
-      "ru.uggtiu.extendedlocatorbar.ExtendedLocatorBarClient"
+      "ru.uggtiu.locatorbarextended.LocatorBarExtendedClient"
     ],
     "modmenu": [
-      "ru.uggtiu.extendedlocatorbar.gui.ModMenuIntegration"
+      "ru.uggtiu.locatorbarextended.gui.ModMenuIntegration"
     ]
   },
   "mixins": [
-    "extendedlocatorbar.client.mixins.json"
+    "locatorbarextended.client.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.16.0",
